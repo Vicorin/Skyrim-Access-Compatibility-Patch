@@ -11,6 +11,6 @@ IMPORTANT: The Skyrim Access Compatibility Patch must be loaded after all mods i
 ## Supported Mods
 
 * [Alternate Perspective - alternate start](https://www.nexusmods.com/skyrimspecialedition/mods/50307) (including add-ons)
-[*][Biggy Traits](https://www.nexusmods.com/skyrimspecialedition/mods/136384) (including add-ons)
+* [Biggy Traits](https://www.nexusmods.com/skyrimspecialedition/mods/136384) (including add-ons)
 * [Lawbringer](https://www.nexusmods.com/skyrimspecialedition/mods/29882)
 * [Why I came to Skyrim - Origin Stories](https://www.nexusmods.com/skyrimspecialedition/mods/167166)
