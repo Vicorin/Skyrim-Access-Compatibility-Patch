@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fomod>
+  <Name>Skyrim Access Compatibility Patches</Name>
+  <Author>Josh</Author>
+  <Version>1.1</Version>
+  <Website></Website>
+  <Description>Makes the custom menus and message boxes of other mods speak for Skyrim Access users. Includes the AccessSpeech SKSE plugin (speech through NVDA or SAPI) and patched scripts for Alternate Perspective, Biggie Traits, Why I Came to Skyrim and Lawbringer. The installer pre-selects the patches for the mods it detects.</Description>
+  <Groups>
+    <element>Utilities</element>
+    <element>User Interface</element>
+  </Groups>
+</fomod>

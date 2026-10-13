@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.ca/fo3/ModConfig5.0.xsd">
+  <moduleName>Skyrim Access Compatibility Patches</moduleName>
+
+  <!-- Always installed: the AccessSpeech SKSE plugin and its Papyrus script, plus the README. -->
+  <requiredInstallFiles>
+    <folder source="Core" destination="" priority="0" />
+    <file source="Skyrim Access Compatibility Patches - README.md" destination="Skyrim Access Compatibility Patches - README.md" priority="0" />
+  </requiredInstallFiles>
+
+  <installSteps order="Explicit">
+    <installStep name="Patches">
+      <optionalFileGroups order="Explicit">
+        <group name="Mods to make speak" type="SelectAny">
+          <plugins order="Explicit">
+
+            <plugin name="Alternate Perspective">
+              <description>Speaks the "Choose your fate" start menu: each start option, its description and its sub-options, and the final choice. Replaces APDialoguePlayer.pex. Pre-selected when AlternatePerspective.esp is installed.</description>
+              <files>
+                <folder source="Patches\AlternatePerspective" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <dependencyType>
+                  <defaultType name="Optional" />
+                  <patterns>
+                    <pattern>
+                      <dependencies operator="Or">
+                        <fileDependency file="AlternatePerspective.esp" state="Active" />
+                        <fileDependency file="AlternatePerspective.esp" state="Inactive" />
+                      </dependencies>
+                      <type name="Recommended" />
+                    </pattern>
+                  </patterns>
+                </dependencyType>
+              </typeDescriptor>
+            </plugin>
+
+            <plugin name="Biggie Traits (B612 traits menu)">
+              <description>Speaks the trait selection menu of Biggie Traits (the B612 traits menu): the focused trait, its description, selected state and the Random and Confirm buttons. Replaces b612_TraitsMenu.pex from B612. Pre-selected when Biggie Traits.esp or b612.esp is installed.</description>
+              <files>
+                <folder source="Patches\BiggieTraits" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <dependencyType>
+                  <defaultType name="Optional" />
+                  <patterns>
+                    <pattern>
+                      <dependencies operator="Or">
+                        <fileDependency file="Biggie Traits.esp" state="Active" />
+                        <fileDependency file="Biggie Traits.esp" state="Inactive" />
+                        <fileDependency file="b612.esp" state="Active" />
+                        <fileDependency file="b612.esp" state="Inactive" />
+                      </dependencies>
+                      <type name="Recommended" />
+                    </pattern>
+                  </patterns>
+                </dependencyType>
+              </typeDescriptor>
+            </plugin>
+
+            <plugin name="Why I Came to Skyrim - Origin Stories">
+              <description>Speaks the backstory selection menu: the focused story, its description, selected state and the Random and Confirm buttons. Replaces JayUI_Script.pex. Pre-selected when The Book of Origins.esp is installed.</description>
+              <files>
+                <folder source="Patches\WhyICameToSkyrim" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <dependencyType>
+                  <defaultType name="Optional" />
+                  <patterns>
+                    <pattern>
+                      <dependencies operator="Or">
+                        <fileDependency file="The Book of Origins.esp" state="Active" />
+                        <fileDependency file="The Book of Origins.esp" state="Inactive" />
+                      </dependencies>
+                      <type name="Recommended" />
+                    </pattern>
+                  </patterns>
+                </dependencyType>
+              </typeDescriptor>
+            </plugin>
+
+            <plugin name="Lawbringer">
+              <description>Speaks the banner-claiming message boxes of Lawbringer: the location and current owner, the available factions, the highlighted button and the result. Replaces LCO_SimpleControllerBase.pex and LCO_ShorsWatchtowerController.pex and adds LCO_Access.pex. Pre-selected when LCO_Framework.esp is installed.</description>
+              <files>
+                <folder source="Patches\Lawbringer" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <dependencyType>
+                  <defaultType name="Optional" />
+                  <patterns>
+                    <pattern>
+                      <dependencies operator="Or">
+                        <fileDependency file="LCO_Framework.esp" state="Active" />
+                        <fileDependency file="LCO_Framework.esp" state="Inactive" />
+                      </dependencies>
+                      <type name="Recommended" />
+                    </pattern>
+                  </patterns>
+                </dependencyType>
+              </typeDescriptor>
+            </plugin>
+
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>
