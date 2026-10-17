@@ -21,6 +21,7 @@ $Patches = @{
     "LCO_Access"                     = "Lawbringer"
     "LCO_SimpleControllerBase"       = "Lawbringer"
     "LCO_ShorsWatchtowerController"  = "Lawbringer"
+    "SACP_BeastPerkTree"             = "BeastPerkTrees"
 }
 
 # ---- native plugin ----
@@ -69,6 +70,14 @@ foreach ($psc in Get-ChildItem (Join-Path $Root "papyrus\*.psc")) {
     New-Item -ItemType Directory -Force (Join-Path $target "Source\Scripts") | Out-Null
     Copy-Item $pexFile (Join-Path $target "Scripts\") -Force
     Copy-Item $psc.FullName (Join-Path $target "Source\Scripts\") -Force
+}
+
+# Plugins (.esp) that belong to an installer option: plugins\<option>\*.esp
+foreach ($esp in Get-ChildItem (Join-Path $Root "plugins\*\*.esp")) {
+    $option = $esp.Directory.Name
+    $target = Join-Path $Dist "Patches\$option"
+    New-Item -ItemType Directory -Force $target | Out-Null
+    Copy-Item $esp.FullName $target -Force
 }
 
 $Zip = Join-Path $Root "dist\$ModName.zip"

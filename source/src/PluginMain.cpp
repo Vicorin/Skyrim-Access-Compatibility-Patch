@@ -6,6 +6,8 @@
 //   Bool Function IsAvailable() Global Native
 //   String Function GetBackendName() Global Native
 //   Int Function GetVersion() Global Native
+//   String[] Function DescribeBeastPerk(String asLabel) Global Native   (BeastPerks.cpp)
+//   String[] Function ListBeastPerks(Int aiTree, Int aiMode) Global Native
 
 #include <shlobj.h>
 
@@ -17,12 +19,13 @@
 #include "skse64/PapyrusNativeFunctions.h"
 
 #include "Speech.h"
+#include "BeastPerks.h"
 
 IDebugLog gLog;
 
 namespace
 {
-	const UInt32 kPluginVersion = 1;
+	const UInt32 kPluginVersion = 2;
 	const char* kPluginName = "AccessSpeech";
 	const char* kPapyrusClass = "AccessSpeech";
 
@@ -81,6 +84,8 @@ namespace
 		registry->SetFunctionFlags(kPapyrusClass, "IsAvailable", VMClassRegistry::kFunctionFlag_NoWait);
 		registry->SetFunctionFlags(kPapyrusClass, "GetBackendName", VMClassRegistry::kFunctionFlag_NoWait);
 		registry->SetFunctionFlags(kPapyrusClass, "GetVersion", VMClassRegistry::kFunctionFlag_NoWait);
+
+		BeastPerks::RegisterPapyrus(registry, kPapyrusClass);
 
 		_MESSAGE("Papyrus functions registered on %s", kPapyrusClass);
 		return true;

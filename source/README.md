@@ -8,6 +8,8 @@ replacers, not message boxes either). Currently covered:
 * **Biggie Traits** trait selection (the B612 traits menu)
 * **Why I Came to Skyrim - Origin Stories** backstory selection
 * **Lawbringer** banner claiming (its message boxes)
+* The **werewolf / Vampire Lord perk tree** (the skills menu while transformed), which Skyrim
+  Access itself does not read
 
 While one of these menus is open, the focused entry and its description are spoken, along with
 whatever else that menu needs (selected state, sub-options, buttons, the final choice). The menus
@@ -32,6 +34,7 @@ mods you do not have are harmless but pointless.
 | Biggie Traits | `Scripts/b612_TraitsMenu.pex` | Patched B612 traits menu script. |
 | Why I Came to Skyrim | `Scripts/JayUI_Script.pex` | Patched backstory menu script. |
 | Lawbringer | `Scripts/LCO_SimpleControllerBase.pex`, `Scripts/LCO_ShorsWatchtowerController.pex`, `Scripts/LCO_Access.pex` | Patched banner scripts plus a helper that narrates the message boxes. |
+| Werewolf and Vampire Lord perk trees | `SACP_BeastPerks.esp` (light plugin), `Scripts/SACP_BeastPerkTree.pex` | A start-game-enabled quest whose player-alias script narrates the beast perk tree. |
 
 Sources of all scripts are included under `Source/Scripts`.
 
@@ -67,6 +70,21 @@ box text and its visible buttons, the highlighted button as you move, and the re
 ("Banner raised for The Empire. Pinefall Bridge changes hands in 5 minutes, after 24 hours in
 game, or when you leave the area."). Only the buttons the mod actually shows are listed.
 
+**Werewolf / Vampire Lord perk tree:** Skyrim Access reads the normal skills menu by indexing the
+perks of the eighteen skills and following the zoom from the skill ring into a tree. The beast tree
+has no ring and uses the Werewolf / Vampire perk actor values, so Skyrim Access says nothing there.
+With this option, opening the skills menu while transformed announces the tree ("Werewolf perks.
+Perks to increase: 1."), then the selected perk, its description and its requirements ("Bestial
+Strength. Werewolf claws do 25% more damage. Requires: ..."). Moving between perks reads the newly
+selected one; the perk point count is repeated when it changes; the "take this perk?" confirmation
+box is read with its buttons. Each perk is read with its rank ("Bestial Strength, 1 of 4"), the
+description of the rank you would buy next, whether it can be learned now (or why not), what it
+requires and what it leads to; this comes from the game's own perk tree data (AccessSpeech 2+), with
+the menu's text as a fallback. The same hotkeys as in Skyrim Access's normal trees work: 1 what the
+perk leads to, 2 its prerequisites, 3 perks you can learn now, 4 perks you own. Nothing is spoken in the normal skills menu, which Skyrim Access
+already handles. Detection is by the player's current race (werewolf, Vampire Lord, werebear); other
+beast races from mods are recognised by the menu opening directly in a tree that is not a skill.
+
 ## Troubleshooting
 
 * Log: `Documents\My Games\Skyrim Special Edition\SKSE\AccessSpeech.log`
@@ -89,7 +107,8 @@ Needs Visual Studio 2022 Build Tools, CMake, the SKSE 2.3.1 sources extracted to
 with the game's own `Papyrus Compiler`. Output: `dist\Skyrim Access Compatibility Patches.zip`
 (FOMOD layout: `fomod\`, `Core\`, `Patches\<option>\`). Add a new patch by dropping its `.psc`
 into `papyrus\`, mapping it to an option folder in `$Patches` in `build.ps1`, and adding a
-`<plugin>` to `fomod\ModuleConfig.xml`.
+`<plugin>` to `fomod\ModuleConfig.xml`. `tools\make_esp.py` regenerates `plugins\BeastPerkTrees\SACP_BeastPerks.esp`
+(a hand-built quest plugin; the generated file is committed).
 
 `build\Release\SpeechTest.exe "hello"` speaks a sentence outside the game to check the
 NVDA / SAPI backends.

@@ -38,6 +38,8 @@ add_library(${PROJECT_NAME} SHARED
 	src/PluginMain.cpp
 	src/Speech.cpp
 	src/Speech.h
+	src/BeastPerks.cpp
+	src/BeastPerks.h
 	${COMMON_SRC}
 	${SKSE_COMMON_SRC}
 	${SKSE_SRC}

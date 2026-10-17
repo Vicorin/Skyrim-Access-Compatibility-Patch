@@ -100,6 +100,27 @@
               </typeDescriptor>
             </plugin>
 
+            <plugin name="Werewolf and Vampire Lord perk trees">
+              <description>Speaks the beast perk tree (the skills menu while transformed into a werewolf, werebear or Vampire Lord), which Skyrim Access leaves silent: the tree name, the perk points, the selected perk with its description and requirements, and the purchase confirmation box. Adds SACP_BeastPerks.esp (a light plugin, no load-order slot) and SACP_BeastPerkTree.pex. Pre-selected when Dawnguard.esm is present. Works with Growl and Sacrosanct.</description>
+              <files>
+                <folder source="Patches\BeastPerkTrees" destination="" priority="0" />
+              </files>
+              <typeDescriptor>
+                <dependencyType>
+                  <defaultType name="Optional" />
+                  <patterns>
+                    <pattern>
+                      <dependencies operator="Or">
+                        <fileDependency file="Dawnguard.esm" state="Active" />
+                        <fileDependency file="Dawnguard.esm" state="Inactive" />
+                      </dependencies>
+                      <type name="Recommended" />
+                    </pattern>
+                  </patterns>
+                </dependencyType>
+              </typeDescriptor>
+            </plugin>
+
           </plugins>
         </group>
       </optionalFileGroups>
